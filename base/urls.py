@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     # Vehicle requests
-    ## Get /vehicle - Get all the vehicle, no authentication required.
+    ## Get /vehicle - Get all the vehicles, no authentication required.
     ## Get /vehicle?limit=0 - Get all the vehicles with queries, limit presents maximum amount of returned vehicles, offset=0, no authentication required.
     ## Get /vehicle?limit=0&offset=0 -  Get all the vehicles with queries, limit presents maximum amount of returned vehicles,
         # offset presents amount of skipped vehicles from the start of the request, no authentication required.
