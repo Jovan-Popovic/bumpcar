@@ -1,10 +1,10 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from base.models import Vehicle, Profile
 from base.serializers import VehicleSerializer
 from .permissions import IsOwnerProfileOrReadOnly
-from .serializers import UserSerializer
+from .serializers import UserSerializer, ProfileSerializer
 
 class VehicleListAll(generics.ListAPIView):
     serializer_class = VehicleSerializer
@@ -27,23 +27,13 @@ class GetVehicleById(generics.RetrieveAPIView):
     serializer_class = VehicleSerializer
     lookup_field = 'pk'
 
-# class DeleteVehicleById(generics.DestroyAPIView):
-#     queryset = Vehicle.objects.all()
-#     serializer_class = VehicleSerializer
-#     lookup_field = 'pk'
 
-
-
-class UserProfileListCreateView(generics.ListCreateAPIView):
+class CreateUser(generics.CreateAPIView):
     queryset=Profile.objects.all()
-    serializer_class=UserSerializer
-    permission_classes=[IsAuthenticated]
+    serializer_class=ProfileSerializer
+    permission_classes = [AllowAny]
 
-    def perform_create(self, serializer):
-        user=self.request.user
-        serializer.save(user=user)
-
-class userProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
+class ListUser(generics.ListAPIView):
     queryset=Profile.objects.all()
-    serializer_class=UserSerializer
-    permission_classes=[IsOwnerProfileOrReadOnly,IsAuthenticated]
+    serializer_class=ProfileSerializer
+    permission_classes = [AllowAny]

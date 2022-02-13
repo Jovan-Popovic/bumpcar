@@ -12,9 +12,7 @@ urlpatterns = [
 
     ## Get /vehicle/:id - Get vehicle by ID, no authentication required.
     re_path(r'^vehicle/(?P<pk>.+)/$', views.GetVehicleById.as_view(), name='get-vehicle'),
+    re_path(r'^users/$', views.ListUser.as_view(), name="get-users"),
 
-    ## Delete /vehicle/:id - Delete vehicle by ID, authentification required
-    # re_path(r'^vehicle/(?P<pk>.+)/delete/$', views.DeleteVehicleById.as_view(), name='delete-vehicle'),
-    path("all-profiles/", views.UserProfileListCreateView.as_view(), name="all-profiles"),
-    path("profile/<int:pk>/", views.userProfileDetailView.as_view(), name="profile"),
+    re_path(r"^profile/create/$", views.CreateUser.as_view(), name="create-user"),
 ]

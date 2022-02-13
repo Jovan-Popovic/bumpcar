@@ -2,9 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     full_name = models.CharField(max_length=96)
-    email = models.EmailField(max_length=254, unique=True)
     location = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
 
