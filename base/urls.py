@@ -15,4 +15,6 @@ urlpatterns = [
 
     ## Delete /vehicle/:id - Delete vehicle by ID, authentification required
     # re_path(r'^vehicle/(?P<pk>.+)/delete/$', views.DeleteVehicleById.as_view(), name='delete-vehicle'),
+    path("all-profiles/", views.UserProfileListCreateView.as_view(), name="all-profiles"),
+    path("profile/<int:pk>/", views.userProfileDetailView.as_view(), name="profile"),
 ]
