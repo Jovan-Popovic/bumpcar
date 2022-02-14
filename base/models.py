@@ -16,12 +16,14 @@ class Profile(models.Model):
 class Vehicle(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,)
+        on_delete=models.CASCADE,
+    )
+
     name = models.CharField(max_length=90)
-    price = models.IntegerField(range(0, 1000000))
-    year = models.IntegerField(range(1990, 2022))
-    horse_power = models.IntegerField(range(1, 1500))
-    seat_count = models.IntegerField(range(1, 50))
+    price = models.IntegerField()
+    year = models.IntegerField()
+    horse_power = models.IntegerField()
+    seat_count = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -31,8 +33,8 @@ class Vehicle(models.Model):
 class Accessories(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     name = models.CharField(max_length=90)
-    price = models.IntegerField(range(0, 1000))
-    year = models.IntegerField(range(1990 - 2022))
+    price = models.IntegerField()
+    year = models.IntegerField()
 
     def __str__(self):
         return self.name

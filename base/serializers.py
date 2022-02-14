@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from base.models import Vehicle, Profile
 from django.contrib.auth.models import User
+from base.models import Vehicle, Profile
 
+### User/Profile Serializers ###
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -32,17 +33,21 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
             user=this_user,
             phone = profile_data["phone"],
             location = validated_data["location"],
-            )
+        )
 
         new_profile.save()
         return new_profile
+
+### Vehicle Serializers ###
+
 
 class GetVehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
         fields = '__all__'
 
-class VehicleSerializer(serializers.HyperlinkedModelSerializer):
+
+class CreateVehicleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Vehicle
         fields = ['name', 'price', 'year', 'horse_power', 'seat_count']
