@@ -37,8 +37,17 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         new_profile.save()
         return new_profile
 
-
-class VehicleSerializer(serializers.ModelSerializer):
+class GetVehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
         fields = '__all__'
+
+class VehicleSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Vehicle
+        fields = ['name', 'price', 'year', 'horse_power', 'seat_count']
+
+    def create(self, validated_data):
+        validated_data['user']=self.context['request'].user
+        vehicle = Vehicle.objects.create(**validated_data)
+        return vehicle

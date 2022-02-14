@@ -4,7 +4,7 @@ from .permissions import IsOwnerProfileOrReadOnly
 
 from django.views.generic import DetailView
 from base.models import Vehicle, Profile
-from .serializers import UserSerializer, ProfileSerializer, VehicleSerializer
+from .serializers import UserSerializer, ProfileSerializer, VehicleSerializer, GetVehicleSerializer
 
 ### User - views ###
 class CreateUser(generics.CreateAPIView):
@@ -27,7 +27,7 @@ class GetUser(generics.RetrieveAPIView):
 
 ### Vehicle - views ###
 class VehicleListAll(generics.ListAPIView):
-    serializer_class = VehicleSerializer
+    serializer_class = GetVehicleSerializer
     permission_classes = [AllowAny]
 
     def get_queryset(self):
@@ -45,7 +45,12 @@ class VehicleListAll(generics.ListAPIView):
 
 class GetVehicleById(generics.RetrieveAPIView):
     queryset = Vehicle.objects.all()
-    serializer_class = VehicleSerializer
+    serializer_class = GetVehicleSerializer
     lookup_field = 'pk'
     permission_classes = [AllowAny]
 
+
+class CreateVehicle(generics.CreateAPIView):
+    queryset = Vehicle.objects.all()
+    serializer_class = VehicleSerializer
+    permission_classes = [IsAuthenticated]

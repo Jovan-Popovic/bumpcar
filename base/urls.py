@@ -10,5 +10,6 @@ urlpatterns = [
 
     # Vehicle requests
     re_path(r'^vehicles/$', views.VehicleListAll.as_view(), name='vehicles'),
-    re_path(r'^vehicle/(?P<pk>.+)/$', views.GetVehicleById.as_view(), name='get-vehicle'),
+    re_path(r'^vehicle/id=(?P<pk>.+)/$', views.GetVehicleById.as_view(), name='get-vehicle'),
+    re_path(r'^vehicle/create/$', views.CreateVehicle.as_view(), name='create-vehicle')
 ]
