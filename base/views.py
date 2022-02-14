@@ -1,13 +1,34 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
-
-from base.models import Vehicle, Profile
-from base.serializers import VehicleSerializer
 from .permissions import IsOwnerProfileOrReadOnly
-from .serializers import UserSerializer, ProfileSerializer
 
+from django.views.generic import DetailView
+from base.models import Vehicle, Profile
+from .serializers import UserSerializer, ProfileSerializer, VehicleSerializer
+
+### User - views ###
+class CreateUser(generics.CreateAPIView):
+    queryset=Profile.objects.all()
+    serializer_class=ProfileSerializer
+    permission_classes = [AllowAny]
+
+class ListUser(generics.ListAPIView):
+    queryset=Profile.objects.all()
+    serializer_class=ProfileSerializer
+    permission_classes = [AllowAny]
+
+class GetUser(generics.RetrieveAPIView):
+    permission_classes = [AllowAny]
+    def get(self, request):
+        print(request.data)
+        user_id = Profile.objects.get(user_id=1)
+        return Profile.objects.get(id = user_id)
+
+
+### Vehicle - views ###
 class VehicleListAll(generics.ListAPIView):
     serializer_class = VehicleSerializer
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         vehicles = Vehicle.objects.all()
@@ -26,14 +47,5 @@ class GetVehicleById(generics.RetrieveAPIView):
     queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
     lookup_field = 'pk'
-
-
-class CreateUser(generics.CreateAPIView):
-    queryset=Profile.objects.all()
-    serializer_class=ProfileSerializer
     permission_classes = [AllowAny]
 
-class ListUser(generics.ListAPIView):
-    queryset=Profile.objects.all()
-    serializer_class=ProfileSerializer
-    permission_classes = [AllowAny]

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     full_name = models.CharField(max_length=96)
@@ -10,7 +11,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.email
 
+
 class Vehicle(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     name = models.CharField(max_length=90)
     price = models.IntegerField(range(0, 1000000))
     year = models.IntegerField(range(1990, 2022))
@@ -23,6 +26,7 @@ class Vehicle(models.Model):
 
 
 class Accessories(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     name = models.CharField(max_length=90)
     price = models.IntegerField(range(0, 1000))
     year = models.IntegerField(range(1990 - 2022))
