@@ -20,11 +20,11 @@ urlpatterns = [
     re_path(r'^drivetrains/$',   GetAllFieldValues.as_view(),  name='get-drivetrains',   kwargs={ 'model': Drivetrain }),
     re_path(r'^brands/$',        GetAllFieldValues.as_view(),  name='get-brands',        kwargs={ 'model': Brand }),
 
-    # re_path(r'^condition/$',   CreateField.as_view(),  name='get-conditions',    kwargs={ 'model': Condition }),
+    re_path(r'^condition/$',   CreateField.as_view(),  name='get-conditions',    kwargs={ 'model': Condition }),
     # re_path(r'^fuel-type/$',   CreateField.as_view(),  name='get-fuel-types',    kwargs={ 'model': FuelType }),
     # re_path(r'^gear-type/$',   CreateField.as_view(),  name='get-gear-typles',   kwargs={ 'model': GearType }),
     # re_path(r'^color/$',       CreateField.as_view(),  name='get-colors',        kwargs={ 'model': Color }),
     # re_path(r'^vehicle-type/$',CreateField.as_view(),  name='get-vehile-types',  kwargs={ 'model': VehicleType }),
     # re_path(r'^drivetrain/$',  CreateField.as_view(),  name='get-drivetrains',   kwargs={ 'model': Drivetrain }),
-    # re_path(r'^brand/$',       CreateField.as_view(),  name='get-brands',        kwargs={ 'model': Brand }),
+    re_path(r'^brand/$',       CreateField.as_view(),  name='get-brands',        kwargs={ 'model': Brand }),
 ]

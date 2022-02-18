@@ -65,7 +65,13 @@ class CreateVehicleSerializer(serializers.ModelSerializer):
             'year',
             'horse_power',
             'seat_count',
-            'condition'
+            'vehicle_type',
+            'drivetrain',
+            'fuel_type',
+            'gear_type',
+            'condition',
+            'color',
+            'brand',
         ]
 
     def create(self, validated_data):
@@ -80,4 +86,10 @@ class FieldSerizalizer(serializers.ModelSerializer):
     class Meta:
         model = Condition
         fields = '__all__'
+
+    def create(self, validated_data):
+        model_field = self.context.get('view').kwargs.get('model')
+        new_value = model_field.objects.create(**validated_data)
+        new_value.save()
+        return new_value
 

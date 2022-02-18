@@ -1,8 +1,8 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from django.views.generic import DetailView
-
 from .serializers import *
+
 ### User - views ###
 
 class UserView():
@@ -72,13 +72,14 @@ class VehicleView():
 
 ### Field Models ###
 
-# class CreateField(generics.CreateAPIView):
-#     permission_classes = [AllowAny]
-#     serializer_class = FieldSerizalizer
+class CreateField(generics.CreateAPIView):
+    permission_classes = [IsAdminUser]
+    serializer_class = FieldSerizalizer
 
-#     def get_queryset(self):
-#         queryset = self.kwargs['model'].objects.all()
-#         return queryset
+    def get_queryset(self):
+        queryset = self.kwargs['model'].objects.all()
+        return queryset
+
 
 class GetAllFieldValues(generics.ListAPIView):
     permission_classes = [AllowAny]
