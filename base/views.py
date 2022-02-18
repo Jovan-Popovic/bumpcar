@@ -2,14 +2,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.views.generic import DetailView
 
-from base.models import Vehicle, Profile, Condition
-from .serializers import (
-    ProfileSerializer,
-    CreateVehicleSerializer,
-    GetVehicleSerializer,
-    ConditionSerizalizer
-)
-
+from .serializers import *
 ### User - views ###
 
 class UserView():
@@ -38,13 +31,35 @@ class VehicleView():
 
         def get_queryset(self):
             vehicles = Vehicle.objects.all()
+            get_request = self.request.GET.get
 
-            limit = self.request.GET.get('limit', None)
-            offset = self.request.GET.get('offset', 0)
-            if limit is not None:
-                limit = int(limit)
-                offset = int(offset)
-                vehicles = vehicles[offset:offset+limit]
+            value = get_request('brand', None) ### Brand Check
+            vehicles = vehicles.filter(brand=value) if value != None else vehicles
+
+            value = get_request('fuel-type', None) ### Fuel Type Check
+            vehicles = vehicles.filter(fuel_type_id=value) if value != None else vehicles
+
+            value = get_request('color', None) ### Color Check
+            vehicles = vehicles.filter(color_id=value) if value != None else vehicles
+
+            value = get_request('condition', None) ### Condition Check
+            vehicles = vehicles.filter(condition_id=value) if value != None else vehicles
+
+            value = get_request('drivetrain', None) ### Drivetrain Check
+            vehicles = vehicles.filter(drivetrain_id=value) if value != None else vehicles
+
+            value = get_request('gear-type', None) ### Gear Type Check
+            vehicles = vehicles.filter(gear_type_id=value) if value != None else vehicles
+
+            value = get_request('vehicle-type', None) ### Gear Type Check
+            vehicles = vehicles.filter(vehicle_type_id=value) if value != None else vehicles
+
+            value = get_request('user', None) ### User Check
+            vehicles = vehicles.filter(user_id=value) if value != None else vehicles
+
+            limit = int(get_request('limit', 10))
+            offset = int(get_request('offset', 0))
+            vehicles = vehicles[offset:offset+limit]
 
             return vehicles
 
@@ -55,16 +70,20 @@ class VehicleView():
         permission_classes = [AllowAny]
 
 
-### Helper Models ###
+### Field Models ###
 
-class ConditionView():
-    class CreateCondition(generics.CreateAPIView):
-        queryset = Condition.objects.all()
-        permission_classes = [IsAuthenticated]
-        serializer_class = ConditionSerizalizer
+# class CreateField(generics.CreateAPIView):
+#     permission_classes = [AllowAny]
+#     serializer_class = FieldSerizalizer
 
-    class GetAllCondition(generics.ListAPIView):
-        queryset = Condition.objects.all()
-        serializer_class = ConditionSerizalizer
-        permission_classes = [AllowAny]
+#     def get_queryset(self):
+#         queryset = self.kwargs['model'].objects.all()
+#         return queryset
 
+class GetAllFieldValues(generics.ListAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = FieldSerizalizer
+
+    def get_queryset(self):
+        queryset = self.kwargs['model'].objects.all()
+        return queryset
