@@ -11,7 +11,7 @@ urlpatterns = [
 
     # Vehicle requests
     re_path(r'^vehicles/$', VehicleView.VehicleListAll.as_view(), name='get-all-vehicles'),
-    re_path(r'^vehicle/id=(?P<pk>.+)/$', VehicleView.GetVehicleById.as_view(), name='get-vehicle-by-id'),
+    re_path(r'^vehicle/(?P<pk>.+)/$', VehicleView.GetVehicleById.as_view(), name='get-vehicle-by-id'),
     re_path(r'^vehicle/$', VehicleView.CreateVehicle.as_view(), name='create-vehicle'),
 
     # Fields Post Request
