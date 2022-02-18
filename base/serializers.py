@@ -47,8 +47,32 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         new_profile.save()
         return new_profile
 
-### Vehicle Serializers ###
 
+class ProfileUpdateSerializer(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        super(ProfileUpdateSerializer, self).__init__(*args, **kwargs)
+        self.fields['location'].required = False
+        self.fields['phone'].required = False
+        self.fields['full_name'].required = False
+
+    class Meta:
+        model = Profile
+        fields = ['location', 'phone', 'full_name']
+
+    def update(self, instance, validated_data):
+        auth_user = self.context['request'].user
+        profile_id = self.context['request'].parser_context.get('kwargs').get('pk')
+
+        if auth_user.id == profile_id or auth_user.is_superuser or auth_user.is_staff:
+            Profile.objects.filter(user = profile_id).update(**validated_data)
+
+            for key in validated_data:
+                setattr(instance, key, validated_data.get(key))
+
+        return instance
+
+
+### Vehicle Serializers ###
 
 class GetVehicleSerializer(serializers.ModelSerializer):
     class Meta:
@@ -59,7 +83,7 @@ class GetVehicleSerializer(serializers.ModelSerializer):
 class CreateVehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
-        fields = [
+        fields = (
             'name',
             'price',
             'year',
@@ -72,10 +96,10 @@ class CreateVehicleSerializer(serializers.ModelSerializer):
             'condition',
             'color',
             'brand',
-        ]
+        )
 
     def create(self, validated_data):
-        validated_data['user']=self.context['request'].user
+        validated_data['user'] = self.context['request'].user
         vehicle = Vehicle.objects.create(**validated_data)
         return vehicle
 

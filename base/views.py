@@ -1,4 +1,5 @@
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from django.views.generic import DetailView
 from .serializers import *
@@ -7,14 +8,33 @@ from .serializers import *
 
 class UserView():
     class CreateUser(generics.CreateAPIView):
-        queryset=Profile.objects.all()
-        serializer_class=ProfileSerializer
+        queryset = Profile.objects.all()
+        serializer_class = ProfileSerializer
         permission_classes = [AllowAny]
 
     class ListUser(generics.ListAPIView):
-        queryset=Profile.objects.all()
-        serializer_class=ProfileSerializer
+        queryset = Profile.objects.all()
+        serializer_class = ProfileSerializer
         permission_classes = [AllowAny]
+
+    class UpdateUser(generics.UpdateAPIView):
+        queryset = Profile.objects.all()
+        serializer_class = ProfileUpdateSerializer
+        permission_classes = [IsAuthenticated]
+        lookup_field = 'pk'
+
+    class DeleteUser(generics.DestroyAPIView):
+        queryset = Profile.objects.all()
+        permission_classes = [AllowAny]
+
+        def destroy(self, request, *args, **kwargs):
+            auth_user =  request.user # Logged User pk
+            user_to_delete = kwargs.get('pk') # deleting pk
+
+            if auth_user.pk == user_to_delete or auth_user.is_superuser or auth_user.is_staff:
+                User.objects.get(pk = auth_user.pk).delete()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 ### Vehicle - views ###
@@ -81,7 +101,7 @@ class CreateField(generics.CreateAPIView):
         return queryset
 
 
-class GetAllFieldValues(generics.ListAPIView):
+class ListFieldValues(generics.ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = FieldSerizalizer
 
