@@ -11,8 +11,9 @@ urlpatterns = [
 
     # Vehicle requests
     re_path(r'^vehicles/$', VehicleView.VehicleListAll.as_view(), name='get-all-vehicles'),
-    re_path(r'^vehicle/(?P<pk>.+)/$', VehicleView.GetVehicleById.as_view(), name='get-vehicle-by-id'),
+    re_path(r'^vehicle/id=(?P<pk>.+)/$', VehicleView.GetVehicleById.as_view(), name='get-vehicle-by-id'),
     re_path(r'^vehicle/$', VehicleView.CreateVehicle.as_view(), name='create-vehicle'),
+    re_path(r'^vehicle/delete/id=(?P<pk>.+)/$', VehicleView.DeleteVehicle.as_view(), name='delete-vehicle'),
 
     # Fields Post Request
     re_path(r'^condition/$',     CreateField.as_view(),       name='create-conditions',    kwargs={ 'model': Condition }),

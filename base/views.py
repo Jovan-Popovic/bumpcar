@@ -25,7 +25,7 @@ class UserView():
 
     class DeleteUser(generics.DestroyAPIView):
         queryset = Profile.objects.all()
-        permission_classes = [AllowAny]
+        permission_classes = [IsAuthenticated]
 
         def destroy(self, request, *args, **kwargs):
             auth_user =  request.user # Logged User pk
@@ -88,6 +88,21 @@ class VehicleView():
         serializer_class = GetVehicleSerializer
         lookup_field = 'pk'
         permission_classes = [AllowAny]
+
+    class DeleteVehicle(generics.DestroyAPIView):
+        queryset = Profile.objects.all()
+        permission_classes = [AllowAny]
+
+        def destroy(self, request, *args, **kwargs):
+            auth_user = request.user
+            # vehicle_to_delete = kwargs
+            vehicle_to_delete = kwargs.get('pk')
+            vehicles_user = Vehicle.objects.get(pk = kwargs.get('pk')).user_id
+
+            if auth_user.pk == vehicles_user or auth_user.is_superuser or auth_user.is_staff:
+                Vehicle.objects.get(pk = vehicle_to_delete).delete()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 ### Field Models ###

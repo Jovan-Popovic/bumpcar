@@ -6,13 +6,14 @@ Bumpcar is....
 
 - `GET /users` - Get all users, no authentication required.
 - `POST /user/create` - Create new user, no authentication required.
+- `POST /auth/jwt/create` - Get JWT, no authentication required.
 - `PUT /user/update/<int:pk>` - Update user by it's primary key, authentication required.
 - `DELETE /user/delete/<int:pk>` - Delete user by it's primary key, authentication required.
 
 ## Vehicle requests
 
 - `GET /vehicles` - Get all the vehicles, no authentication required.
-- `GET /vehicle/<int:pk>` - Get vehicle by primary key, no authentication required.
+- `GET /vehicle/id=<int:pk>` - Get vehicle by primary key, no authentication required.
 - `POST /vehicle` - Create new vehicle, authentication required.
 
 ## Fields requests
