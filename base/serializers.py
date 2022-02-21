@@ -11,6 +11,7 @@ from .model_fields import (
     Brand,
 )
 
+
 ### User/Profile Serializers ###
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
