@@ -1,22 +1,23 @@
+from os import getenv
 from dotenv import load_dotenv
 from pathlib import Path
 
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-*m$ij^j3++*j3tl-bene2!m#%63#omsv^@wk7ss0oiuectf+(i"
+SECRET_KEY = getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -73,11 +74,11 @@ WSGI_APPLICATION = "bumpcar.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "bumpcar",
-        "USER": "bumpadmin",
-        "PASSWORD": "FH9jpP4$WF5MKCZ^-sKTdj-!%qYFFyYKY3Eht_UD!3Fxs3yXA-BtaRHfFn=AjG5$",
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "NAME": getenv("DB_NAME"),
+        "USER": getenv("DB_USER"),
+        "PASSWORD": getenv("DB_PASSWORD"),
+        "HOST": getenv("DB_HOST"),
+        "PORT": getenv("DB_PORT"),
     }
 }
 
@@ -99,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -130,8 +131,8 @@ REST_FRAMEWORK = {
         # "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
         "rest_framework.permissions.AllowAny"
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
 }
 
