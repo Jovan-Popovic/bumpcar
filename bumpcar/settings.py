@@ -12,7 +12,7 @@ load_dotenv(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = getenv("SECRET_KEY")
+SECRET_KEY = "django-insecure-*m$ij^j3++*j3tl-bene2!m#%63#omsv^@wk7ss0oiuectf+(i"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -75,11 +75,11 @@ WSGI_APPLICATION = "bumpcar.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": getenv("DB_NAME"),
-        "USER": getenv("DB_USER"),
-        "PASSWORD": getenv("DB_PASSWORD"),
-        "HOST": getenv("DB_HOST"),
-        "PORT": getenv("DB_PORT"),
+        "NAME": "bumpcar",
+        "USER": "bumpadmin",
+        "PASSWORD": "FH9jpP4$WF5MKCZ^-sKTdj-!%qYFFyYKY3Eht_UD!3Fxs3yXA-BtaRHfFn=AjG5$",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
 
