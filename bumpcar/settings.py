@@ -15,7 +15,7 @@ load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("DEBUG")
+DEBUG = bool(getenv("DEBUG"))
 
 ALLOWED_HOSTS = ["bumpcar-api.herokuapp.com", "127.0.0.1", "localhost"]
 
