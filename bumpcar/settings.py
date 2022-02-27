@@ -75,10 +75,10 @@ WSGI_APPLICATION = "bumpcar.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "bumpcar",
-        "USER": "bumpadmin",
-        "PASSWORD": "FH9jpP4$WF5MKCZ^-sKTdj-!%qYFFyYKY3Eht_UD!3Fxs3yXA-BtaRHfFn=AjG5$",
-        "HOST": "127.0.0.1",
+        "NAME": "d426av17tsvvbh",
+        "USER": "mrkxqfvheprkgn",
+        "PASSWORD": "a2f4dd645f51d811e925becc047305d74332b27167a53dba9b6879754fab13a9",
+        "HOST": "ec2-176-34-105-15.eu-west-1.compute.amazonaws.com",
         "PORT": "5432",
     }
 }
