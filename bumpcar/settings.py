@@ -17,7 +17,7 @@ SECRET_KEY = "django-insecure-*m$ij^j3++*j3tl-bene2!m#%63#omsv^@wk7ss0oiuectf+(i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "bumpcar-api.herokuapp.com"]
+ALLOWED_HOSTS = ["bumpcar-api.herokuapp.com", "127.0.0.1", "localhost"]
 
 
 # Application definition
