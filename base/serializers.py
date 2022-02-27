@@ -1,6 +1,7 @@
 from rest_framework import serializers
+from django.db import models
 from django.contrib.auth.models import User
-from base.models import Profile, Vehicle
+from base.models import Profile, Vehicle, Image
 from .model_fields import (
     VehicleType,
     Drivetrain,
@@ -82,27 +83,28 @@ class GetVehicleSerializer(serializers.ModelSerializer):
 
 
 class CreateVehicleSerializer(serializers.ModelSerializer):
+    vehicle = GetVehicleSerializer()
     class Meta:
-        model = Vehicle
-        fields = (
-            'name',
-            'price',
-            'year',
-            'horse_power',
-            'seat_count',
-            'vehicle_type',
-            'drivetrain',
-            'fuel_type',
-            'gear_type',
-            'condition',
-            'color',
-            'brand',
-        )
+        model = Image
+        fields = ['vehicle', 'image']
 
     def create(self, validated_data):
+        vehicle_data = validated_data.get('vehicle')
         validated_data['user'] = self.context['request'].user
-        vehicle = Vehicle.objects.create(**validated_data)
-        return vehicle
+        new_vehicle = Vehicle.objects.create(**vehicle_data)
+        new_vehicle.save()
+
+        new_data = self.context['request'].FILES
+        for img in new_data.getlist('image'):
+            new_image = Image.objects.create(image=img, vehicle=new_vehicle)
+            new_image.save()
+
+        return validated_data
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = '__all__'
 
 
 ### Field model serializers ###

@@ -12,6 +12,11 @@ class UserView():
         serializer_class = ProfileSerializer
         permission_classes = [AllowAny]
 
+    class GetUser(generics.RetrieveAPIView):
+        queryset = Profile.objects.all()
+        serializer_class = ProfileSerializer
+        permission_classes = [AllowAny]
+
     class ListUser(generics.ListAPIView):
         queryset = Profile.objects.all()
         serializer_class = ProfileSerializer
@@ -41,9 +46,9 @@ class UserView():
 
 class VehicleView():
     class CreateVehicle(generics.CreateAPIView):
-        queryset = Vehicle.objects.all()
+        queryset = Image.objects.all()
+        permission_classes = [AllowAny]
         serializer_class = CreateVehicleSerializer
-        permission_classes = [IsAuthenticated]
 
     class VehicleListAll(generics.ListAPIView):
         serializer_class = GetVehicleSerializer
@@ -53,26 +58,38 @@ class VehicleView():
             vehicles = Vehicle.objects.all()
             get_request = self.request.GET.get
 
-            value = get_request('brand', None) ### Brand Check
-            vehicles = vehicles.filter(brand=value) if value != None else vehicles
+            value = get_request('brand', '').split(',') ### Brand Check
+            vehicles = vehicles.filter(brand__in=value) if value != [''] else vehicles
 
-            value = get_request('fuel-type', None) ### Fuel Type Check
-            vehicles = vehicles.filter(fuel_type_id=value) if value != None else vehicles
+            value = get_request('model', '').split(',') ### Model Check
+            vehicles = vehicles.filter(brand_model__in=value) if value != [''] else vehicles
 
-            value = get_request('color', None) ### Color Check
-            vehicles = vehicles.filter(color_id=value) if value != None else vehicles
+            value = get_request('fuel-type', '').split(',') ### Fuel Type Check
+            vehicles = vehicles.filter(fuel_type_id__in=value) if value != [''] else vehicles
 
-            value = get_request('condition', None) ### Condition Check
-            vehicles = vehicles.filter(condition_id=value) if value != None else vehicles
+            value = get_request('color', '').split(',') ### Color Check
+            vehicles = vehicles.filter(color__in=value) if value != [''] else vehicles
 
-            value = get_request('drivetrain', None) ### Drivetrain Check
-            vehicles = vehicles.filter(drivetrain_id=value) if value != None else vehicles
+            value = get_request('condition', '').split(',') ### Condition Check
+            vehicles = vehicles.filter(condition__in=value) if value != [''] else vehicles
 
-            value = get_request('gear-type', None) ### Gear Type Check
-            vehicles = vehicles.filter(gear_type_id=value) if value != None else vehicles
+            value = get_request('drivetrain', '').split(',') ### Drivetrain Check
+            vehicles = vehicles.filter(drivetrain__in=value) if value != [''] else vehicles
 
-            value = get_request('vehicle-type', None) ### Gear Type Check
-            vehicles = vehicles.filter(vehicle_type_id=value) if value != None else vehicles
+            value = get_request('gear-type', '').split(',') ### Gear Type Check
+            vehicles = vehicles.filter(gear_type__in=value) if value != [''] else vehicles
+
+            value = get_request('vehicle-type', '').split(',') ### Gear Type Check
+            vehicles = vehicles.filter(vehicle_type__in=value) if value != [''] else vehicles
+
+            value = get_request('min-price', 0) ### Maximum price check
+            vehicles = vehicles.filter(price__gt = int(value)-1)
+
+            value = get_request('max-price', None) ### Minimum price check
+            vehicles = vehicles.filter(price__lt = int(value)+1) if value != None else vehicles
+
+            value = get_request('location', '').split(',') ### Minimum price check
+            vehicles = vehicles.filter(location__in = value) if value != [''] else vehicles
 
             value = get_request('user', None) ### User Check
             vehicles = vehicles.filter(user_id=value) if value != None else vehicles
@@ -89,6 +106,16 @@ class VehicleView():
         lookup_field = 'pk'
         permission_classes = [AllowAny]
 
+    class GetVehicleByUser(generics.ListAPIView):
+        serializer_class = GetVehicleSerializer
+        permission_classes = [AllowAny]
+
+        def get_queryset(self):
+            user =  self.kwargs['pk']
+            vehicles = Vehicle.objects.all()
+            vehicles = vehicles.filter(user_id = user)
+            return vehicles
+
     class DeleteVehicle(generics.DestroyAPIView):
         queryset = Profile.objects.all()
         permission_classes = [AllowAny]
@@ -104,6 +131,18 @@ class VehicleView():
                 return Response(status=status.HTTP_204_NO_CONTENT)
             return Response(status=status.HTTP_403_FORBIDDEN)
 
+
+class GetImageById(generics.ListAPIView):
+        queryset = Image.objects.all()
+        serializer_class = ImageSerializer
+        lookup_field = 'vehicle'
+        permission_classes = [AllowAny]
+
+        def get_queryset(self):
+            vehicle = self.kwargs['vehicle']
+            queryset = Image.objects.all()
+            queryset = queryset.filter(vehicle=vehicle)
+            return queryset
 
 ### Field Models ###
 
