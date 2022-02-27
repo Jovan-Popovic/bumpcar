@@ -1,4 +1,5 @@
 asgiref==3.5.0
+backports.zoneinfo==0.2.1
 black==22.1.0
 certifi==2021.10.8
 cffi==1.15.0
@@ -11,11 +12,13 @@ defusedxml==0.7.1
 Django==4.0.2
 django-debug-toolbar==3.2.4
 django-filter==21.1
+django-multiselectfield==0.1.12
 django-templated-mail==1.1.1
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.0.0
 djoser==2.1.0
 idna==3.3
+importlib-metadata==4.11.1
 itypes==1.2.0
 Jinja2==3.0.3
 Markdown==3.3.6
@@ -23,6 +26,7 @@ MarkupSafe==2.0.1
 mypy-extensions==0.4.3
 oauthlib==3.2.0
 pathspec==0.9.0
+Pillow==9.0.1
 platformdirs==2.4.1
 psycopg2==2.9.3
 pycparser==2.21
@@ -37,5 +41,7 @@ social-auth-app-django==5.0.0
 social-auth-core==4.2.0
 sqlparse==0.4.2
 tomli==2.0.0
+typing-extensions==4.1.1
 uritemplate==4.1.1
 urllib3==1.26.8
+zipp==3.7.0

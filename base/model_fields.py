@@ -45,3 +45,18 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.value
+
+class BrandModel(models.Model):
+    value = models.CharField(max_length=150, primary_key=True)
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.value
+
+class Location(models.Model):
+    value = models.CharField(max_length=150, primary_key=True)
+    latitude = models.DecimalField(max_digits=7, decimal_places=4)
+    longitude = models.DecimalField(max_digits=7, decimal_places=4)
+
+    def __str__(self):
+        return self.value
