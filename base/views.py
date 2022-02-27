@@ -47,7 +47,7 @@ class UserView():
 class VehicleView():
     class CreateVehicle(generics.CreateAPIView):
         queryset = Image.objects.all()
-        permission_classes = [AllowAny]
+        permission_classes = [IsAuthenticated]
         serializer_class = CreateVehicleSerializer
 
     class VehicleListAll(generics.ListAPIView):
@@ -118,7 +118,7 @@ class VehicleView():
 
     class DeleteVehicle(generics.DestroyAPIView):
         queryset = Profile.objects.all()
-        permission_classes = [AllowAny]
+        permission_classes = [IsAuthenticated]
 
         def destroy(self, request, *args, **kwargs):
             auth_user = request.user
@@ -161,4 +161,13 @@ class ListFieldValues(generics.ListAPIView):
 
     def get_queryset(self):
         queryset = self.kwargs['model'].objects.all()
+        return queryset
+
+class ListModels(generics.ListAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = FieldSerizalizer
+
+    def get_queryset(self):
+        queryset = BrandModel.objects.all()
+        queryset = queryset.filter(brand_id = self.kwargs['fk'])
         return queryset

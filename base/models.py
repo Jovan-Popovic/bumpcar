@@ -47,9 +47,9 @@ class Vehicle(models.Model):
     year         = models.IntegerField()
     horse_power  = models.IntegerField()
     seat_count   = models.IntegerField()
-    created_at   = models.DateTimeField(auto_now_add=True)
-
     features    = MultiSelectField(choices=FEATURES, default=None)
+
+    created_at   = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name

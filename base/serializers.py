@@ -5,6 +5,7 @@ from base.models import Profile, Vehicle, Image
 from .model_fields import (
     VehicleType,
     Drivetrain,
+    BrandModel,
     Condition,
     FuelType,
     GearType,
@@ -81,9 +82,29 @@ class GetVehicleSerializer(serializers.ModelSerializer):
         model = Vehicle
         fields = '__all__'
 
+class VehicleMeta(serializers.ModelSerializer):
+    class Meta:
+        model = Vehicle
+        fields = [
+            'vehicle_type',
+            'drivetrain',
+            'condition',
+            'fuel_type',
+            'gear_type',
+            'color',
+            'brand',
+            'brand_model',
+            'location',
+            'name',
+            'price',
+            'year',
+            'horse_power',
+            'seat_count',
+            'features',
+        ]
 
 class CreateVehicleSerializer(serializers.ModelSerializer):
-    vehicle = GetVehicleSerializer()
+    vehicle = VehicleMeta()
     class Meta:
         model = Image
         fields = ['vehicle', 'image']
