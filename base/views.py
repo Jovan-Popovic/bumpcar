@@ -171,3 +171,8 @@ class ListModels(generics.ListAPIView):
         queryset = BrandModel.objects.all()
         queryset = queryset.filter(brand_id = self.kwargs['fk'])
         return queryset
+
+class Locations(generics.ListAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = LocationSerializer
+    queryset = Location.objects.all()

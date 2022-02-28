@@ -9,6 +9,7 @@ from .model_fields import (
     Condition,
     FuelType,
     GearType,
+    Location,
     Color,
     Brand,
 )
@@ -141,3 +142,7 @@ class FieldSerizalizer(serializers.ModelSerializer):
         new_value.save()
         return new_value
 
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
+        fields = '__all__'
