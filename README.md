@@ -49,6 +49,7 @@ Here you can see all of the available API endpoints, you can test them using thi
 - `GET /drivetrains` - Get all drivetrains, no authentication required.
 - `GET /brands` - Get all brands, no authentication required.
 - `GET /models/<str:pk>` - Get all models by brand, no authentication required.
+- `GET /locations` - Get all locations, no authentication required.
 
 - `POST /condition` - Create condition, authentication required.
 - `POST /fuel-type` - Create fuel type, authentication required.
