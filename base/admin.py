@@ -10,6 +10,7 @@ from .model_fields import (
     Color,
     Brand,
     BrandModel,
+    Image,
 )
 
 
@@ -25,4 +26,6 @@ admin.site.register(GearType)
 admin.site.register(Location)
 admin.site.register(Color)
 admin.site.register(Brand)
+admin.site.register(Image)
+
 
