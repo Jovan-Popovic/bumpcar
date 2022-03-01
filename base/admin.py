@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Vehicle
+from .models import Profile, Vehicle, Image
 from .model_fields import (
     VehicleType,
     Drivetrain,
@@ -10,7 +10,6 @@ from .model_fields import (
     Color,
     Brand,
     BrandModel,
-    Image,
 )
 
 
