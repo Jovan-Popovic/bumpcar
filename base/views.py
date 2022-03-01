@@ -91,6 +91,9 @@ class VehicleView():
             value = get_request('max-price', None) ### Minimum price check
             vehicles = vehicles.filter(price__lt = int(value)+1) if value != None else vehicles
 
+            value = get_request('seat-count', '').split(',')
+            vehicles = vehicles.filter(seat_count__in=value) if value != [''] else vehicles
+
             value = get_request('location', '').split(',') ### Minimum price check
             vehicles = vehicles.filter(location__in = value) if value != [''] else vehicles
 
