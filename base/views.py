@@ -79,6 +79,9 @@ class VehicleView():
             value = get_request('gear-type', '').split(',') ### Gear Type Check
             vehicles = vehicles.filter(gear_type__in=value) if value != [''] else vehicles
 
+            value = get_request('year', '').split(',') ### Check for year
+            vehicles = vehicles.filter(year__in=value) if value != [''] else vehicles
+
             value = get_request('vehicle-type', '').split(',') ### Gear Type Check
             vehicles = vehicles.filter(vehicle_type__in=value) if value != [''] else vehicles
 
