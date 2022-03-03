@@ -1,4 +1,5 @@
 from rest_framework import generics, status
+from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
@@ -8,7 +9,7 @@ from .serializers import *
 ### User - views ###
 
 class UserView():
-    @csrf_exempt
+    @method_decorator(csrf_exempt, name='dispatch')
     class CreateUser(generics.CreateAPIView):
         queryset = Profile.objects.all()
         serializer_class = ProfileSerializer

@@ -17,7 +17,7 @@ DATABASES = { 'default': dj_database_url.config(conn_max_age=600, ssl_require=Tr
 SECRET_KEY = getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 APPEND_SLASH=False
