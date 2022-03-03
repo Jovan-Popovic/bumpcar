@@ -21,6 +21,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 APPEND_SLASH=False
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # Application definition
 
