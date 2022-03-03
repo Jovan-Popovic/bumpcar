@@ -20,6 +20,7 @@ SECRET_KEY = getenv("SECRET_KEY")
 DEBUG = getenv("DEBUG")
 
 ALLOWED_HOSTS = ["*", "bumpcar-api.herokuapp.com", "127.0.0.1", "localhost", "0.0.0.0"]
+APPEND_SLASH=False
 
 # Application definition
 
