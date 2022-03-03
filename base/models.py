@@ -22,7 +22,7 @@ FEATURES = (('Power Steering', 'Power Steering'), ('AC', 'AC'), ('Alarm', 'Alarm
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     full_name = models.CharField(max_length=96)
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=50, default="")
     phone = models.CharField(max_length=15)
 
     def __str__(self):
