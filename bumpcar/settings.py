@@ -51,7 +51,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "corsheaders.middleware.CorsPostCsrfMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "bumpcar.middleware.CORSMiddleware",
+    # "bumpcar.middleware.CORSMiddleware",
 ]
 
 ROOT_URLCONF = "bumpcar.urls"
