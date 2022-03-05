@@ -119,6 +119,7 @@ class GetVehicleSerializer(serializers.ModelSerializer):
             'description',
             'features',
             'images',
+            'id',
         ]
 
 class VehicleMeta(serializers.ModelSerializer):
