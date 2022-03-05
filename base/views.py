@@ -108,7 +108,7 @@ class VehicleView():
             vehicles = vehicles.filter(user_id=value) if value != None else vehicles
 
             value = get_request('name-search', '')
-            vehicles = vehicles.filter(name__contains = value)
+            vehicles = vehicles.filter(name__icontains = value)
 
             limit = int(get_request('limit', 10))
             offset = int(get_request('offset', 0))
