@@ -154,36 +154,12 @@ class VehicleMeta(serializers.ModelSerializer):
 class CreateVehicleSerializer(serializers.ModelSerializer):
     vehicle = VehicleMeta()
     class Meta:
-        model = Vehicle
-        fields = [
-            'description'
-            'name',
-            'condition',
-            'brand',
-            'brand_model',
-            'vehicle_type',
-            'horse_power',
-            'seat_count',
-            'location',
-            'engine_capacity',
-            'drivetrain',
-            'fuel_type',
-            'gear_type',
-            'color',
-            'price',
-            'year',
-            'features',
-            'milage',
-            'length',
-            'width',
-            'height',
-            'cargo_volume',
-            'user',
-        ]
+        model = Image
+        fields = ['vehicle', 'image']
 
     def create(self, validated_data):
         vehicle_data = validated_data.get('vehicle')
-        # validated_data['user'] = self.context['request'].user
+        validated_data['user'] = self.context['request'].user
         new_vehicle = Vehicle.objects.create(**vehicle_data)
         new_vehicle.save()
 
