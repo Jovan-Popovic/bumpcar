@@ -18,7 +18,7 @@ DATABASES = { 'default': dj_database_url.config(conn_max_age=600, ssl_require=Tr
 SECRET_KEY = getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv('DEBUG')
 ALLOWED_HOSTS = ["bumpcar-api.herokuapp.com", "127.0.0.1", "localhost", "0.0.0.0"]
 
 # Application definition
@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework_simplejwt",
-    "corsheaders",
+    # "corsheaders",
     "multiselectfield",
     "debug_toolbar",
     "djoser",
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
+    # "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -51,10 +51,8 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "corsheaders.middleware.CorsPostCsrfMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "bumpcar.middleware.CORSMiddleware",
 ]
-
-CORS_ALLOW_ALL_ORIGINS = True
-
 
 ROOT_URLCONF = "bumpcar.urls"
 
