@@ -14,7 +14,7 @@ urlpatterns = [
     re_path(r'^vehicles/$', VehicleView.VehicleListAll.as_view(), name='get-all-vehicles'),
     re_path(r'^vehicle/(?P<pk>[0-9]+)/$', VehicleView.GetVehicleById.as_view(), name='get-vehicle-by-id'),
     re_path(r'^vehicle/$', VehicleView.CreateVehicle.as_view(), name='create-vehicle'),
-    re_path(r'^vehicle/user/(?P<pk>[0-9]+)/$', VehicleView.GetVehicleByUser.as_view(), name='get-vehicle-by-id'),
+    re_path(r'^vehicle/user/(?P<username>.+)/$', VehicleView.GetVehicleByUser.as_view(), name='get-vehicle-by-id'),
     re_path(r'^vehicle/(?P<vehicle>[0-9]+)/images/$', GetImageById.as_view(), name='get-vehicle-image-by-vehicle-id'),
     re_path(r'^vehicle/delete/(?P<pk>[0-9]+)/$', VehicleView.DeleteVehicle.as_view(), name='delete-vehicle'),
 

@@ -124,9 +124,8 @@ class VehicleView():
         permission_classes = [AllowAny]
 
         def get_queryset(self):
-            user =  self.kwargs['pk']
-            vehicles = Vehicle.objects.all()
-            vehicles = vehicles.filter(user_id = user)
+            user = User.objects.get(username = self.kwargs['username'])
+            vehicles = Vehicle.objects.filter(user = user)
             return vehicles
 
     class DeleteVehicle(generics.DestroyAPIView):
