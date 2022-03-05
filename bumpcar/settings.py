@@ -77,7 +77,11 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
-
+CORS_ORIGIN_WHITELIST = [
+    "localhost",
+    "http://localhost:3000",
+    "localhost:3000",
+]
 
 ROOT_URLCONF = "bumpcar.urls"
 
