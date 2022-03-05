@@ -155,7 +155,31 @@ class CreateVehicleSerializer(serializers.ModelSerializer):
     vehicle = VehicleMeta()
     class Meta:
         model = Vehicle
-        fields = ['vehicle']
+        fields = [
+            'description'
+            'name',
+            'condition',
+            'brand',
+            'brand_model',
+            'vehicle_type',
+            'horse_power',
+            'seat_count',
+            'location',
+            'engine_capacity',
+            'drivetrain',
+            'fuel_type',
+            'gear_type',
+            'color',
+            'price',
+            'year',
+            'features',
+            'milage',
+            'length',
+            'width',
+            'height',
+            'cargo_volume',
+            'user',
+        ]
 
     def create(self, validated_data):
         vehicle_data = validated_data.get('vehicle')
