@@ -102,6 +102,12 @@ class VehicleMeta(serializers.ModelSerializer):
             'horse_power',
             'seat_count',
             'features',
+            'milage',
+            'engine_capacity',
+            'length',
+            'width',
+            'height',
+            'cargo_volume',
         ]
 
 class CreateVehicleSerializer(serializers.ModelSerializer):
