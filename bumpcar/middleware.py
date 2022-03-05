@@ -7,7 +7,6 @@ class CORSMiddleware:
         response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = '*'
         response[
-            'Access-Control-Allow-Headers'] = 'Content-Type, Access-Control-Allow-Headers, Authorization, ' \
-                                              'X-Requested-With'
+            'Access-Control-Allow-Headers'] = '*'
 
         return response
