@@ -43,7 +43,6 @@ class UserView():
             auth_user =  request.user # Logged User pk
             user_to_delete = kwargs.get('pk') # deleting pk
 
-            
             User.objects.get(pk = auth_user.pk).delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
             # return Response(status=status.HTTP_403_FORBIDDEN)
