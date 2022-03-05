@@ -78,8 +78,19 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
 
 ### Vehicle Serializers ###
 
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = ['image']
+
 class GetVehicleSerializer(serializers.ModelSerializer):
     created_by = serializers.ReadOnlyField(source='user.username')
+    images = serializers.SerializerMethodField()
+
+    def get_images(self, vehicle):
+        queryset = Image.objects.filter(vehicle = vehicle)
+        serializer = ImageSerializer(instance=queryset, many=True)
+        return serializer.data
     class Meta:
         model = Vehicle
         fields = [
@@ -107,6 +118,7 @@ class GetVehicleSerializer(serializers.ModelSerializer):
             'cargo_volume',
             'description',
             'features',
+            'images',
         ]
 
 class VehicleMeta(serializers.ModelSerializer):
@@ -154,11 +166,6 @@ class CreateVehicleSerializer(serializers.ModelSerializer):
             new_image.save()
 
         return validated_data
-
-class ImageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Image
-        fields = '__all__'
 
 
 ### Field model serializers ###
