@@ -54,7 +54,7 @@ class UserView():
 class VehicleView():
     class CreateVehicle(generics.CreateAPIView):
         queryset = Image.objects.all()
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny]
         serializer_class = CreateVehicleSerializer
 
     class VehicleListAll(generics.ListAPIView):
