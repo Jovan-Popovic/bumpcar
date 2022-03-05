@@ -148,6 +148,7 @@ class VehicleMeta(serializers.ModelSerializer):
             'height',
             'cargo_volume',
             'user',
+            'description'
         ]
 
 class CreateVehicleSerializer(serializers.ModelSerializer):
