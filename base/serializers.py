@@ -126,28 +126,28 @@ class VehicleMeta(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
         fields = [
-            'description'
-            'name',
-            'condition',
-            'brand',
-            'brand_model',
             'vehicle_type',
-            'horse_power',
-            'seat_count',
-            'location',
-            'engine_capacity',
             'drivetrain',
+            'condition',
             'fuel_type',
             'gear_type',
             'color',
+            'brand',
+            'brand_model',
+            'location',
+            'name',
             'price',
             'year',
+            'horse_power',
+            'seat_count',
             'features',
             'milage',
+            'engine_capacity',
             'length',
             'width',
             'height',
             'cargo_volume',
+            'description'
             'user',
         ]
 
