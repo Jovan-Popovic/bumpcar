@@ -20,10 +20,6 @@ SECRET_KEY = getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-CORS_ALLOWED_ORIGINS = ["*"]
-DEBUG_PROPAGATE_EXCEPTIONS = True
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,6 +51,10 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
+ALLOWED_HOSTS = ["*"]
+CORS_ALLOWED_ORIGINS = ["*"]
+ALLOWED_METHODS = ["*"]
+DEBUG_PROPAGATE_EXCEPTIONS = True
 CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = "bumpcar.urls"
