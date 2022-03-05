@@ -20,7 +20,6 @@ SECRET_KEY = getenv("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-APPEND_SLASH=False
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # Application definition
@@ -163,4 +162,4 @@ REST_FRAMEWORK = {
     )
 }
 
-INTERNAL_IPS = ["127.0.0.1"]
+# INTERNAL_IPS = ["127.0.0.1"]

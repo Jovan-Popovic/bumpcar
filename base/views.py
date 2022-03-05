@@ -15,10 +15,14 @@ class UserView():
         serializer_class = ProfileSerializer
         permission_classes = [AllowAny]
 
-    class GetUser(generics.RetrieveAPIView):
-        queryset = Profile.objects.all()
+    class GetUser(generics.ListAPIView):
         serializer_class = ProfileSerializer
         permission_classes = [AllowAny]
+
+        def get_queryset(self):
+            user = User.objects.get(username = self.kwargs['username'])
+            queryset = Profile.objects.filter(user = user)
+            return queryset
 
     class ListUser(generics.ListAPIView):
         queryset = Profile.objects.all()

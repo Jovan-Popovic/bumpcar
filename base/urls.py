@@ -8,7 +8,7 @@ urlpatterns = [
     re_path(r"^user/create/$", UserView.CreateUser.as_view(), name="create-user"),
     re_path(r"^user/update/(?P<pk>[0-9]+)/$", UserView.UpdateUser.as_view(), name="update-user"),
     re_path(r"^user/delete/(?P<pk>[0-9]+)/$", UserView.DeleteUser.as_view(), name="delete-user"),
-    re_path(r'^user/(?P<pk>[0-9]+)/$', UserView.GetUser.as_view(), name='get-user-by-id'),
+    re_path(r'^user/(?P<username>.+)/$', UserView.GetUser.as_view(), name='get-user-by-id'),
 
     # Vehicle requests
     re_path(r'^vehicles/$', VehicleView.VehicleListAll.as_view(), name='get-all-vehicles'),
