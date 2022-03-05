@@ -43,10 +43,10 @@ class UserView():
             auth_user =  request.user # Logged User pk
             user_to_delete = kwargs.get('pk') # deleting pk
 
-            if auth_user.pk == user_to_delete or auth_user.is_superuser or auth_user.is_staff:
-                User.objects.get(pk = auth_user.pk).delete()
-                return Response(status=status.HTTP_204_NO_CONTENT)
-            return Response(status=status.HTTP_403_FORBIDDEN)
+            
+            User.objects.get(pk = auth_user.pk).delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+            # return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 ### Vehicle - views ###
