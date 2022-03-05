@@ -55,6 +55,8 @@ class Vehicle(models.Model):
     height          = models.IntegerField(default=0)
     cargo_volume    = models.IntegerField(default=0)
 
+    description     = models.CharField(max_length = 2000, default='')
+
     features    = MultiSelectField(choices=FEATURES, default=None)
 
     created_at   = models.DateTimeField(auto_now_add=True)
