@@ -79,9 +79,35 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
 ### Vehicle Serializers ###
 
 class GetVehicleSerializer(serializers.ModelSerializer):
+    created_by = serializers.ReadOnlyField(source='user.username')
     class Meta:
         model = Vehicle
-        fields = '__all__'
+        fields = [
+            'user',
+            'created_by',
+            'vehicle_type',
+            'drivetrain',
+            'condition',
+            'fuel_type',
+            'gear_type',
+            'color',
+            'brand',
+            'brand_model',
+            'location',
+            'name',
+            'price',
+            'year',
+            'horse_power',
+            'seat_count',
+            'milage',
+            'engine_capacity',
+            'length',
+            'width',
+            'height',
+            'cargo_volume',
+            'description',
+            'features',
+        ]
 
 class VehicleMeta(serializers.ModelSerializer):
     class Meta:
@@ -119,7 +145,6 @@ class CreateVehicleSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         vehicle_data = validated_data.get('vehicle')
         validated_data['user'] = self.context['request'].user
-        validated_data['creator'] = self.context['request'].user.get('username')
         new_vehicle = Vehicle.objects.create(**vehicle_data)
         new_vehicle.save()
 

@@ -30,8 +30,7 @@ class Profile(models.Model):
 
 
 class Vehicle(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    creator = models.CharField(default='bump', max_length=50)
+    user            = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     vehicle_type    = models.ForeignKey(VehicleType, on_delete=models.CASCADE)
     drivetrain      = models.ForeignKey(Drivetrain, on_delete=models.CASCADE)
@@ -58,9 +57,9 @@ class Vehicle(models.Model):
 
     description     = models.CharField(max_length = 2000, default='')
 
-    features    = MultiSelectField(choices=FEATURES, default=None)
+    features        = MultiSelectField(choices=FEATURES, default=None)
 
-    created_at   = models.DateTimeField(auto_now_add=True)
+    created_at      = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
