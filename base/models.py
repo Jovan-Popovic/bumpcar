@@ -31,6 +31,7 @@ class Profile(models.Model):
 
 class Vehicle(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    creator = models.CharField(default='bump', max_length=50)
 
     vehicle_type    = models.ForeignKey(VehicleType, on_delete=models.CASCADE)
     drivetrain      = models.ForeignKey(Drivetrain, on_delete=models.CASCADE)

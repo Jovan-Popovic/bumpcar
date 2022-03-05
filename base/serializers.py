@@ -119,6 +119,7 @@ class CreateVehicleSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         vehicle_data = validated_data.get('vehicle')
         validated_data['user'] = self.context['request'].user
+        validated_data['creator'] = self.context['request'].user.get('username')
         new_vehicle = Vehicle.objects.create(**vehicle_data)
         new_vehicle.save()
 
