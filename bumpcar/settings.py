@@ -19,6 +19,7 @@ SECRET_KEY = getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ["bumpcar-api.herokuapp.com", "127.0.0.1", "localhost", "0.0.0.0"]
 
 # Application definition
 
@@ -31,8 +32,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "rest_framework_simplejwt",
-    "multiselectfield",
     "corsheaders",
+    "multiselectfield",
     "debug_toolbar",
     "djoser",
     "base",
@@ -47,15 +48,16 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     "django.middleware.csrf.CsrfViewMiddleware",
     "corsheaders.middleware.CorsPostCsrfMiddleware",
 ]
 
-ALLOWED_HOSTS=['*']
-CORS_ALLOWED_ORIGINS = ['*']
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "*",
+    "http://localhost:3000",
+    "http://127.0.0.1:9000",
+]
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -64,7 +66,18 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
+
 
 ROOT_URLCONF = "bumpcar.urls"
 
@@ -168,4 +181,4 @@ REST_FRAMEWORK = {
     )
 }
 
-# INTERNAL_IPS = ["127.0.0.1"]
+INTERNAL_IPS = ["127.0.0.1", "0.0.0.0", "*"]
