@@ -196,3 +196,8 @@ class ListModelsImage(generics.RetrieveAPIView):
     serializer_class = BrandModelSerializer
     queryset = BrandModel.objects.all()
     lookup_field = 'pk'
+
+class ListBanners(generics.ListAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = BannersSerializer
+    queryset = BrandModel.objects.all()

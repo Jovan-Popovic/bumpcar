@@ -79,12 +79,16 @@ class ImageSerializer(serializers.ModelSerializer):
 
 class GetVehicleSerializer(serializers.ModelSerializer):
     created_by = serializers.ReadOnlyField(source='user.username')
-    images = serializers.SerializerMethodField()
+    # images = serializers.SerializerMethodField()
 
-    def get_images(self, vehicle):
-        queryset = Image.objects.filter(vehicle = vehicle)
-        serializer = ImageSerializer(instance=queryset, many=True)
-        return serializer.data
+
+    # def get_images(self, vehicle):
+    #     this_vehicle = Vehicle.objects.filter(name = vehicle)
+    #     print(this_vehicle)
+
+    #     queryset = BrandModel.objects.filter(pk = this_vehicle[0].bra)
+    #     serializer = BrandModelSerializer(instance=queryset, many=True)
+
     class Meta:
         model = Vehicle
         fields = [
@@ -112,7 +116,7 @@ class GetVehicleSerializer(serializers.ModelSerializer):
             'cargo_volume',
             'description',
             'features',
-            'images',
+            # 'images',
             'id',
         ]
 
@@ -206,6 +210,11 @@ class BrandModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = BrandModel
         fields = '__all__'
+
+class BannersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BrandModel
+        fields = ['value', 'banner']
 
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
