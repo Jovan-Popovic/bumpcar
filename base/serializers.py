@@ -64,13 +64,12 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
         fields = ['location', 'phone', 'full_name']
 
     def update(self, instance, validated_data):
-        auth_user = self.context['request'].user
         profile_id = self.context['request'].parser_context.get('kwargs').get('pk')
 
         Profile.objects.filter(user = profile_id).update(**validated_data)
 
-        for key in validated_data:
-            setattr(instance, key, validated_data.get(key))
+        # for key in validated_data:
+            # setattr(instance, key, validated_data.get(key))
 
         return instance
 
