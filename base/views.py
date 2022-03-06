@@ -190,3 +190,9 @@ class Locations(generics.ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = LocationSerializer
     queryset = Location.objects.all()
+
+class ListModelsImage(generics.RetrieveAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = BrandModelSerializer
+    queryset = BrandModel.objects.all()
+    lookup_field = 'pk'

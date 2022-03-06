@@ -202,6 +202,11 @@ class FieldSerizalizer(serializers.ModelSerializer):
         new_value.save()
         return new_value
 
+class BrandModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BrandModel
+        fields = '__all__'
+
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
