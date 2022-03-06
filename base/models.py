@@ -48,12 +48,12 @@ class Vehicle(models.Model):
     horse_power     = models.IntegerField()
     seat_count      = models.IntegerField()
 
-    milage          = models.IntegerField(default=0)
-    engine_capacity = models.IntegerField(default=0)
-    length          = models.IntegerField(default=0)
-    width           = models.IntegerField(default=0)
-    height          = models.IntegerField(default=0)
-    cargo_volume    = models.IntegerField(default=0)
+    milage          = models.IntegerField(default=0, blank=True)
+    engine_capacity = models.IntegerField(default=0, blank=True)
+    length          = models.IntegerField(default=0, blank=True)
+    width           = models.IntegerField(default=0, blank=True)
+    height          = models.IntegerField(default=0, blank=True)
+    cargo_volume    = models.IntegerField(default=0, blank=True)
 
     description     = models.CharField(max_length = 2000, default='')
 
