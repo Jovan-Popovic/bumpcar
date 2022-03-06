@@ -65,11 +65,7 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         profile_id = self.context['request'].parser_context.get('kwargs').get('pk')
-
         Profile.objects.filter(pk = profile_id).update(**validated_data)
-
-        # for key in validated_data:
-            # setattr(instance, key, validated_data.get(key))
 
         return instance
 
