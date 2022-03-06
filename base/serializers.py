@@ -20,7 +20,7 @@ from .model_fields import (
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields=['email', 'password', 'username']
+        fields=['email', 'password', 'username', 'id']
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
