@@ -40,7 +40,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         profile_data = {}
 
         profile_data["phone"] = validated_data.pop('phone') if "phone" in validated_data else ""
-        profile_data["location"] = validated_data.pop('location') if "phone" in validated_data else ""
+        profile_data["location"] = validated_data.pop('location') if "location" in validated_data else ""
 
         new_profile = Profile(
             user=this_user,
