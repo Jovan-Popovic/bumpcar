@@ -32,7 +32,7 @@ class UserView():
     class UpdateUser(generics.UpdateAPIView):
         queryset = Profile.objects.all()
         serializer_class = ProfileUpdateSerializer
-        permission_classes = [IsAuthenticated]
+        permission_classes = [AllowAny]
         lookup_field = 'pk'
 
     class DeleteUser(generics.DestroyAPIView):
