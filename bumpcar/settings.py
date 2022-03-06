@@ -21,11 +21,11 @@ SECRET_KEY = getenv("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "*",
-    "bumpcar-api.herokuapp.com",
-    "localhost",
-    "127.0.0.1",
-    "g7-car-app.netlify.app"
+    "*"
+    # "bumpcar-api.herokuapp.com",
+    # "localhost",
+    # "127.0.0.1",
+    # "g7-car-app.netlify.app"
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
