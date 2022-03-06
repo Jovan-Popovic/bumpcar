@@ -172,21 +172,21 @@ class CreateVehicleSerializer(serializers.ModelSerializer):
             'height',
             'cargo_volume',
             'description',
-            'user',
+            # 'user',
         ]
 
-    # def create(self, validated_data):
-    #     vehicle_data = validated_data.get('vehicle')
-    #     validated_data['user'] = self.context['request'].user
-    #     new_vehicle = Vehicle.objects.create(**vehicle_data)
-    #     new_vehicle.save()
+    def create(self, validated_data):
+        vehicle_data = validated_data.get('vehicle')
+        validated_data['user'] = self.context['request'].user
+        new_vehicle = Vehicle.objects.create(**vehicle_data)
+        new_vehicle.save()
 
-    #     new_data = self.context['request'].FILES
-    #     for img in new_data.getlist('image'):
-    #         new_image = Image.objects.create(image=img, vehicle=new_vehicle)
-    #         new_image.save()
+        # new_data = self.context['request'].FILES
+        # for img in new_data.getlist('image'):
+        #     new_image = Image.objects.create(image=img, vehicle=new_vehicle)
+        #     new_image.save()
 
-    #     return validated_data
+        return validated_data
 
 
 ### Field model serializers ###
