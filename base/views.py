@@ -52,7 +52,7 @@ class UserView():
 
 class VehicleView():
     class CreateVehicle(generics.CreateAPIView):
-        queryset = Image.objects.all()
+        queryset = Vehicle.objects.all()
         permission_classes = [AllowAny]
         serializer_class = CreateVehicleSerializer
 

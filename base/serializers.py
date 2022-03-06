@@ -152,23 +152,47 @@ class VehicleMeta(serializers.ModelSerializer):
         ]
 
 class CreateVehicleSerializer(serializers.ModelSerializer):
-    vehicle = VehicleMeta()
+    # vehicle = VehicleMeta()
     class Meta:
-        model = Image
-        fields = ['vehicle', 'image']
+        model = Vehicle
+        fields = [
+            'vehicle_type',
+            'drivetrain',
+            'condition',
+            'fuel_type',
+            'gear_type',
+            'color',
+            'brand',
+            'brand_model',
+            'location',
+            'name',
+            'price',
+            'year',
+            'horse_power',
+            'seat_count',
+            'features',
+            'milage',
+            'engine_capacity',
+            'length',
+            'width',
+            'height',
+            'cargo_volume',
+            'description',
+            'user',
+        ]
 
-    def create(self, validated_data):
-        vehicle_data = validated_data.get('vehicle')
-        validated_data['user'] = self.context['request'].user
-        new_vehicle = Vehicle.objects.create(**vehicle_data)
-        new_vehicle.save()
+    # def create(self, validated_data):
+    #     vehicle_data = validated_data.get('vehicle')
+    #     validated_data['user'] = self.context['request'].user
+    #     new_vehicle = Vehicle.objects.create(**vehicle_data)
+    #     new_vehicle.save()
 
-        new_data = self.context['request'].FILES
-        for img in new_data.getlist('image'):
-            new_image = Image.objects.create(image=img, vehicle=new_vehicle)
-            new_image.save()
+    #     new_data = self.context['request'].FILES
+    #     for img in new_data.getlist('image'):
+    #         new_image = Image.objects.create(image=img, vehicle=new_vehicle)
+    #         new_image.save()
 
-        return validated_data
+    #     return validated_data
 
 
 ### Field model serializers ###
