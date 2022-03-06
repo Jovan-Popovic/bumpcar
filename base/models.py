@@ -57,7 +57,7 @@ class Vehicle(models.Model):
 
     description     = models.CharField(max_length = 2000, default='')
 
-    features        = MultiSelectField(choices=FEATURES, default=None)
+    features        = MultiSelectField(choices=FEATURES, default='Other')
 
     created_at      = models.DateTimeField(auto_now_add=True)
 

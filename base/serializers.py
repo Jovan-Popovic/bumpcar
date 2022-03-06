@@ -134,7 +134,7 @@ class VehicleMeta(serializers.ModelSerializer):
             'year',
             'horse_power',
             'seat_count',
-            'features',
+            # 'features',
             'milage',
             'engine_capacity',
             'length',
