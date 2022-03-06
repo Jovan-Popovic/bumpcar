@@ -38,6 +38,6 @@ urlpatterns = [
     re_path(r'^models/(?P<fk>.+)/$',  ListModels.as_view(),        name='get-models',           kwargs={ 'model': BrandModel }),
     re_path(r'^locations/?',          Locations.as_view(),         name='get-locations'),
 
-    re_path(r'^model/(?P<pk>.+)/$',   ListModelsImage.as_view(), name='list-images'),
+    re_path(r'^banners/(?P<pk>.+)/$',   ListModelsImage.as_view(), name='list-images'),
     re_path(r'^banners/$', ListBanners.as_view(), name='list-banners')
 ]
