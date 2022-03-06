@@ -50,9 +50,9 @@ class BrandModel(models.Model):
     value = models.CharField(max_length=150, primary_key=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     banner = models.CharField(max_length=500, default='')
-    iamge1 = models.CharField(max_length=500, default='')
-    iamge2 = models.CharField(max_length=500, default='')
-    iamge3 = models.CharField(max_length=500, default='')
+    image1 = models.CharField(max_length=500, default='')
+    image2 = models.CharField(max_length=500, default='')
+    image3 = models.CharField(max_length=500, default='')
 
     def __str__(self):
         return self.value
