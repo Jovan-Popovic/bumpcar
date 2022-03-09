@@ -23,5 +23,5 @@ INSERT INTO base_geartype (value) VALUES
 INSERT INTO base_vehicletype (value) VALUES
 ('Car'), ('Motorcycle');
 
-INSERT INTO base_brandmodel (value, brand_id) VALUES
-('Model S', 'Tesla'), ('Model 3', 'Tesla'), ('Model X', 'Tesla'), ('Model Y', 'Tesla');
+INSERT INTO base_brandmodel (value, brand_id, banner, image1, image2, image3) VALUES
+('Model S', 'Tesla', '', '', '', ''), ('Model 3', 'Tesla', '', '', '', ''), ('Model X', 'Tesla', '', '', '', ''), ('Model Y', 'Tesla', '', '', '', '');
