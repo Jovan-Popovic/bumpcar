@@ -24,7 +24,7 @@ Here you can see all of the available API endpoints, you can test them using thi
 ### User requests
 
 - `GET /users` - Get all users, no authentication required.
-- `GET /user/<int:pk>` - Get user info by id, no authentication required.
+- `GET /user/<str:username>` - Get user info by id, no authentication required.
 - `POST /user/create` - Create new user, no authentication required.
 - `POST /auth/jwt/create` - Get JWT, no authentication required.
 - `PUT /user/update/<int:pk>` - Update user by it's primary key, authentication required.
@@ -34,7 +34,7 @@ Here you can see all of the available API endpoints, you can test them using thi
 
 - `GET /vehicles` - Get all the vehicles, no authentication required.
 - `GET /vehicle/<int:pk>` - Get vehicle by primary key, no authentication required.
-- `GET vehicle/user/<int:pk>` - Get all vehicles by user id, no authentication required.
+- `GET vehicle/user/<str:username>` - Get all vehicles by user id, no authentication required.
 - `GET /vehicle/<int:pk>/images` - Get all images by vehicle id, no authentication required.
 - `POST /vehicle` - Create new vehicle, authentication required.
 - `DELETE /vehicle/delete/<int:pk>` - Delete vehicle by id, authentication required.
@@ -48,8 +48,10 @@ Here you can see all of the available API endpoints, you can test them using thi
 - `GET /vehicle-types` - Get all vehicle types, no authentication required.
 - `GET /drivetrains` - Get all drivetrains, no authentication required.
 - `GET /brands` - Get all brands, no authentication required.
-- `GET /models/<str:pk>` - Get all models by brand, no authentication required.
+- `GET /models/<str:fk>` - Get all models by brand, no authentication required.
 - `GET /locations` - Get all locations, no authentication required.
+- `GET /banners/<str:pk>` - Get banner from brand_model, no authentication required.
+- `GET /banners` - Get all banners from every brand_model, no authentication required.
 
 - `POST /condition` - Create condition, authentication required.
 - `POST /fuel-type` - Create fuel type, authentication required.
